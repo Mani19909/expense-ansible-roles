@@ -1,7 +1,7 @@
 - name: create ec2 and r53 records
   hosts: localhost
   vars:
-    zone: daws.in.net
+    zone: daws.info
     instances:
     - db
     - backend
