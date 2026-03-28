@@ -3,5 +3,5 @@ login_host: db-dev.daws.info
 login_password: ExpenseApp1
 DB_HOST: db-dev.daws.info
 BACKEND_API_URL: backend.app-dev.daws.info
-nexus_url: "http://nexus.daws.info:8081"
+nexus_url: nexus.daws.info:8081
 appVersion: "1.0" 
