@@ -34,6 +34,9 @@
       overwrite: true
       ttl: 1
     loop: "{{ all_instances }}"
+
+  - debug:
+      var: ec2_instance_info
     
 
     
