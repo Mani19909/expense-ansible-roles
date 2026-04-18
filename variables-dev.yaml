@@ -1,4 +1,4 @@
-login_user: ec2-user
+login_user: admin
 login_host: db-dev.daws.info
 login_password: ExpenseApp1
 DB_HOST: db-dev.daws.info
