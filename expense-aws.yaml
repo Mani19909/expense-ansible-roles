@@ -1,0 +1,26 @@
+- name: create ec2 and route53 records
+  hosts: localhost
+  vars:
+    zone: daws.info
+  tasks:
+  - name: create ec2 instances
+    amazon.aws.ec2_instance:
+      instance_type: t2.micro
+      name: "{{ item }}"
+      security_group: allow-traffic #replace with your aws value
+      image_id: ami-0220d79f3f480ecf5
+      tags:
+        Name: "{{ item }}"
+
+    loop: 
+    - db
+    - backend 
+    - frontend
+    register: ec2_instance_info
+
+
+  - name: print output
+    ansible.builtin.debug:
+      msg: "output: {{ ec2_instance_info }}"
+    
+
