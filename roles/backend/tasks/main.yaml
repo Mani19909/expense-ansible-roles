@@ -50,6 +50,15 @@
       src: backend.service.j2
       dest: /etc/systemd/system/backend.service
 
+  - name: daemon reload
+    ansible.builtin.systemd_service:
+      daemon_reload: true
+
+  - name: Enable backend service
+    ansible.builtin.service:
+      name: backend
+      enabled: yes    
+
   - name: install python mysql dependencies
     ansible.builtin.pip:
       name: 
@@ -57,19 +66,19 @@
       - cryptography
       executable: pip3.9 # pip3.11 if pythonversion is 3.11
   
-  - name: wait for DB to be ready
-    ansible.builtin.wait_for:
-      host: "{{ login_host }}"
-      port: 3306
-      timeout: 300
+  # - name: wait for DB to be ready
+    # ansible.builtin.wait_for:
+      # host: "{{ login_host }}"
+      # port: 3306
+      # timeout: 300
 
-  - name: create database
-    community.mysql.mysql_db:
-      name: expense
-      state: present
-      login_user: "{{ login_user }}"
-      login_password: "{{ login_password }}"
-      login_host: "{{ login_host }}"
+  # - name: create database
+    # community.mysql.mysql_db:
+      # name: expense
+      # state: present
+      # login_user: "{{ login_user }}"
+      # login_password: "{{ login_password }}"
+      # login_host: "{{ login_host }}"
 
   - name: import data into mysql 
     community.mysql.mysql_db:
@@ -78,12 +87,9 @@
       login_host: "{{ login_host }}"
       target: /app/schema/backend.sql 
       state: import
-      name: expense
+      name: all
 
-  - name: daemon reload
-    ansible.builtin.systemd_service:
-      daemon_reload: true
-
+  
   - name: start and enable backend service
     tags:
     - deployment
