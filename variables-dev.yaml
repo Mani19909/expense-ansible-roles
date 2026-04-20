@@ -1,6 +1,6 @@
-login_user: admin
+login_user: root
 login_host: db-dev.daws.info
-login_password: Expense123
+login_password: ExpenseApp1
 DB_HOST: db-dev.daws.info
 BACKEND_API_URL: backend.app-dev.daws.info
 nexus_url: nexus.daws.info:8081
